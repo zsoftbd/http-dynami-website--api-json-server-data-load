@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GetPost</title>
+</head>
+<body>
+    <input id="userNam" type="text" placeholder="UserNmae">
+    <br>
+    <input id="bodyContent"type="text" placeholder="password">
+    <br>
+    <button id="submit">Sumite</button>
+    <script>
+            document.getElementById('submit').addEventListener('click',function(){
+                    const bodyContent=document.getElementById('bodyContent').value;
+                    const userNam=document.getElementById('userNam').value;
+                    const post={userNam:userNam,body:bodyContent}
+                    nowPostToServer(post)
+                    
+                    document.getElementById('bodyContent').value='';
+                    document.getElementById('userNam').value='';
+            })
+        function nowPostToServer(postInfo){
+            fetch('https://jsonplaceholder.typicode.com/posts', {
+                method: 'POST',
+                body: JSON.stringify(postInf),
+                headers: {
+                    'Content-type': 'application/json; charset=UTF-8',
+                },
+                })
+                .then((response) => response.json())
+                .then((data) => console.log(data))
+                .catch(error=>alert('please try again later'))
+        }
+    </script>
+</body>
+</html>
